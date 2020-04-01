@@ -93,7 +93,8 @@ def extract_coordinates(img_array, classes=[], values=[]):
     
     return data
 
-
-    
-
+def load_coordiantes_from_mask(img, classes=[], values=[]):
+    img_array = open_image_as_nparray(img)
+    img_shell = dig_inside(img_array, values=values)
+    return extract_coordinates(img_shell, classes=classes, values=values)
 

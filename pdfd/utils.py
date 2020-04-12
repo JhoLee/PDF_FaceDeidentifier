@@ -112,22 +112,37 @@ def load_info_from_mask(img_dir, img_id, classes=[], values=[]):
     data = {}
     data[img_id] = {}
     data[img_id]['regions'] = extract_coordinates(img_shell, classes=classes, values=values)
-    data[img_id]['filename'] = img_id
-
+    data[img_id]['id'] = img_id
+    data[img_id]['size'] = {}
+    data[img_id]['size']['height'] = height
+    data[img_id]['size']['width'] = width
     return data
 
 
-def extend_info_into_json(img_id:str, data:dict, json_path:str):
-
+def extend_info_into_json( data:dict, json_path:str):
+    """
+    """
+    # Example form
+    # {'342343': {
+    #   'id': '342343',
+    #   'regions': {
+    #       'face': {
+    #           'x': [...],
+    #           'y': [...]
+    #       },
+    #   'size': {
+    #       'height': '128',
+    #       'width': '64'
+    #    }
+    #   }
+    # }
     if not os.path.isfile(json_path):
         with open(json_path, 'w', encoding="utf-8") as f:
             json.dump(data, f)
             
-
     else:
         with open(json_path, 'r+', encoding="utf-8") as f:
             json_data = json.load(f)
-            print(json_data)
             json_data.update(data)
             f.seek(0)
             json.dump(json_data, f)

@@ -1,3 +1,7 @@
+.idea/*
+logs/*
+*.h5
+.vscode/*
 dataset/*
 
 # Created by https://www.gitignore.io/api/linux,macos,python,pycharm,windows,virtualenv,visualstudio,visualstudiocode
